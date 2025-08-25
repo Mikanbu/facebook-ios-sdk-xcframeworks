@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "FacebookSDKXCFrameworks",
+    name: "facebook-ios-sdk-xcframeworks",
     platforms: [.iOS(.v12)],
     products: [
         .library(name: "FBSDKCoreKit", targets: ["FBSDKCoreKit"]),
