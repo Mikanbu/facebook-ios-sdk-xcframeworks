@@ -1,0 +1,11 @@
+framework module LFFBSDKShareKit {
+    umbrella header "FBSDKShareKit.h"
+
+    export *
+    module * { export * }
+}
+
+module LFFBSDKShareKit.Swift {
+  header "FBSDKShareKit-Swift.h"
+  requires objc
+}

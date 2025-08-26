@@ -1,0 +1,11 @@
+framework module LFFBSDKCoreKit {
+    umbrella header "FBSDKCoreKit.h"
+
+    export *
+    module * { export * }
+}
+
+module LFFBSDKCoreKit.Swift {
+  header "FBSDKCoreKit-Swift.h"
+  requires objc
+}

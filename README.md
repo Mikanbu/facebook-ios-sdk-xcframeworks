@@ -10,6 +10,7 @@ The official Facebook iOS SDK has limitations for teams that need:
 - **Local builds** with custom changes that can't be upstreamed
 - **CI/CD compatibility** without relying on remote binary downloads
 - **Mixed Objective-C/Swift code** that Swift Package Manager doesn't support in source targets
+- **App Store binary checks** (ITMS-91065) that flag official Facebook SDKs
 
 ### The Solution
 This package provides:
@@ -18,6 +19,7 @@ This package provides:
 - ✅ **Swift Package Manager** support with proper dependency resolution
 - ✅ **Local development** workflow for rapid iteration
 - ✅ **Production-ready** builds for CI/CD pipelines
+- ✅ **LF-prefixed frameworks** to bypass App Store binary checks
 
 ## Quick Start
 
@@ -30,35 +32,35 @@ targets: [
     .target(
         name: "YourTarget",
         dependencies: [
-            .product(name: "FacebookCore", package: "facebook-ios-sdk-xcframeworks"),
-            .product(name: "FacebookLogin", package: "facebook-ios-sdk-xcframeworks"),
+            .product(name: "LFFacebookCore", package: "facebook-ios-sdk-xcframeworks"),
+            .product(name: "LFFacebookLogin", package: "facebook-ios-sdk-xcframeworks"),
             // Add other modules as needed
         ]
     )
 ]
 ```
 
-### Import statements remain the same:
+### Import statements (LF-prefixed):
 ```swift
-import FBSDKCoreKit
-import FBSDKLoginKit
-import FBSDKShareKit
+import LFFBSDKCoreKit
+import LFFBSDKLoginKit
+import LFFBSDKShareKit
 ```
 
 ## Available Modules
 
-| Product Name | Includes | Use Case |
-|-------------|----------|----------|
-| `FacebookCore` | FBSDKCoreKit + dependencies | Core Facebook functionality |
-| `FacebookLogin` | FBSDKLoginKit + dependencies | Facebook Login |
-| `FacebookShare` | FBSDKShareKit + dependencies | Facebook Sharing |
-| `FacebookGamingServices` | FBSDKGamingServicesKit + dependencies | Facebook Gaming |
+| Product Name           | Includes                                 | Use Case                |
+|-----------------------|------------------------------------------|-------------------------|
+| `LFFacebookCore`      | LFFBSDKCoreKit + dependencies            | Core Facebook features  |
+| `LFFacebookLogin`     | LFFBSDKLoginKit + dependencies           | Facebook Login          |
+| `LFFacebookShare`     | LFFBSDKShareKit + dependencies           | Facebook Sharing        |
+| `LFFacebookGamingServices` | LFFBSDKGamingServicesKit + dependencies | Facebook Gaming         |
 
 ## Development Workflow
 
 1. **Make changes** in the [source repository](https://github.com/facebook/facebook-ios-sdk)
-2. **Build XCFrameworks** using the custom build script
-3. **Update this package** with new XCFrameworks
+2. **Build LF-prefixed XCFrameworks** using the custom build script
+3. **Update this package** with new LF-prefixed XCFrameworks
 4. **Test locally** using `.package(path: "...")` 
 5. **Tag and release** for team/CI usage
 
@@ -66,9 +68,14 @@ import FBSDKShareKit
 
 - **iOS 12.0+** minimum deployment target
 - **Custom modifications** included in XCFramework builds
+- **LF-prefixed frameworks** to bypass App Store binary checks (ITMS-91065)
 - **Dependency resolution** handled automatically by SPM
 - **Binary distribution** for fast builds and IP protection
 
 ---
 
 > **Note**: This is a custom build of the Facebook iOS SDK. For the official SDK, visit [facebook/facebook-ios-sdk](https://github.com/facebook/facebook-ios-sdk).
+
+---
+
+**Built from Facebook SDK commit:** `9477d3f74b2833de2acf8e852cd96acb30d07f41` (wip)
