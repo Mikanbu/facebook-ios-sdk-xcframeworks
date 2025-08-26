@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1 effective-5.10 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.16.14 clang-1700.3.16.4)
 // swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name FBSDKGamingServicesKit
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import FBSDKCoreKit
 import FBSDKCoreKit_Basics
 import FBSDKShareKit
@@ -19,7 +19,9 @@ import _SwiftConcurrencyShims
   public var name: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias AllCases = [FBSDKGamingServicesKit.ChooseContextFilter]
   public typealias RawValue = Swift.Int
   nonisolated public static var allCases: [FBSDKGamingServicesKit.ChooseContextFilter] {
@@ -35,7 +37,9 @@ import _SwiftConcurrencyShims
   @objc final public var minParticipants: Swift.Int
   @objc public static func filtersName(forFilters filter: FBSDKGamingServicesKit.ChooseContextFilter) -> Swift.String
   @objc final public func validate() throws
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+  #endif
   @objc override dynamic public init()
   @objc deinit
 }
@@ -43,8 +47,12 @@ import _SwiftConcurrencyShims
   @objc convenience public init(content: FBSDKGamingServicesKit.ChooseContextContent, delegate: any FBSDKGamingServicesKit.ContextDialogDelegate)
   @objc override final public func show() -> Swift.Bool
   @objc override final public func validate() throws
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc final public func application(_ application: UIKit.UIApplication?, open url: Foundation.URL?, sourceApplication: Swift.String?, annotation: Any?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc final public func canOpen(_ url: Foundation.URL, for application: UIKit.UIApplication?, sourceApplication: Swift.String?, annotation: Any?) -> Swift.Bool
+  #endif
   @objc final public func applicationDidBecomeActive(_ application: UIKit.UIApplication)
   @objc final public func isAuthenticationURL(_ url: Foundation.URL) -> Swift.Bool
   @objc deinit
@@ -87,7 +95,9 @@ public enum ContextDialogPresenterError : Swift.Error {
 @objcMembers @objc(FBSDKCreateContextContent) final public class CreateContextContent : ObjectiveC.NSObject, FBSDKGamingServicesKit.ValidatableProtocol {
   @objc final public var playerID: Swift.String
   @objc(initDialogContentWithPlayerID:) public init(playerID: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+  #endif
   @objc final public func validate() throws
   @objc deinit
 }
@@ -110,11 +120,15 @@ public enum CustomUpdateContentError : Swift.Error {
   }
 }
 final public class CustomUpdateContentImage {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(message: Swift.String, image: UIKit.UIImage, cta: Swift.String? = nil, payload: Swift.String? = nil, messageLocalization: [Swift.String : Swift.String] = [:], ctaLocalization: [Swift.String : Swift.String] = [:])
+  #endif
   @objc deinit
 }
 final public class CustomUpdateContentMedia {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(message: Swift.String, media: any FBSDKGamingServicesKit.URLMedia, cta: Swift.String? = nil, payload: Swift.String? = nil, messageLocalization: [Swift.String : Swift.String] = [:], ctaLocalization: [Swift.String : Swift.String] = [:])
+  #endif
   @objc deinit
 }
 public enum CustomUpdateGraphRequestError : Swift.Error {
@@ -127,13 +141,21 @@ final public class CustomUpdateGraphRequest {
   final public let graphRequestFactory: any FBSDKCoreKit.GraphRequestFactoryProtocol
   public init()
   public init(graphRequestFactory: any FBSDKCoreKit.GraphRequestFactoryProtocol = GraphRequestFactory())
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func request(content: FBSDKGamingServicesKit.CustomUpdateContentMedia, completionHandler: @escaping (Swift.Result<Swift.Bool, FBSDKGamingServicesKit.CustomUpdateGraphRequestError>) -> Swift.Void) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func request(content: FBSDKGamingServicesKit.CustomUpdateContentImage, completionHandler: @escaping (Swift.Result<Swift.Bool, FBSDKGamingServicesKit.CustomUpdateGraphRequestError>) -> Swift.Void) throws
+  #endif
   @objc deinit
 }
 @objc(FBSDKDialog) public protocol DialogProtocol {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc weak var delegate: (any FBSDKGamingServicesKit.ContextDialogDelegate)? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc var dialogContent: (any FBSDKGamingServicesKit.ValidatableProtocol)? { get set }
+  #endif
   @objc func show() -> Swift.Bool
   @objc func validate() throws
 }
@@ -163,7 +185,9 @@ public struct FacebookVideo : Swift.Codable, Swift.Equatable, FBSDKGamingService
   case askFor
   case turn
   case invite
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.UInt)
+  #endif
   public typealias RawValue = Swift.UInt
   public var rawValue: Swift.UInt {
     get
@@ -180,7 +204,9 @@ public struct FacebookVideo : Swift.Codable, Swift.Equatable, FBSDKGamingService
   @objc final public var title: Swift.String
   @objc final public var cta: Swift.String
   @objc(validateWithOptions:error:) final public func validate(options: FBSDKShareKit.ShareBridgeOptions = []) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+  #endif
   @objc(isEqualToGameRequestContent:) final public func isEqual(to content: FBSDKGamingServicesKit.GameRequestContent) -> Swift.Bool
   @objc final public class var supportsSecureCoding: Swift.Bool {
     @objc get
@@ -197,10 +223,16 @@ public struct FacebookVideo : Swift.Codable, Swift.Equatable, FBSDKGamingService
   @objc final public var canShow: Swift.Bool {
     @objc get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public init(content: FBSDKGamingServicesKit.GameRequestContent, delegate: (any FBSDKGamingServicesKit.GameRequestDialogDelegate)?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc(dialogWithContent:delegate:) public static func dialog(content: FBSDKGamingServicesKit.GameRequestContent, delegate: (any FBSDKGamingServicesKit.GameRequestDialogDelegate)?) -> FBSDKGamingServicesKit.GameRequestDialog
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   @objc(showWithContent:delegate:) public static func show(content: FBSDKGamingServicesKit.GameRequestContent, delegate: (any FBSDKGamingServicesKit.GameRequestDialogDelegate)?) -> FBSDKGamingServicesKit.GameRequestDialog
+  #endif
   @objc @discardableResult
   final public func show() -> Swift.Bool
   @objc(validateWithError:) final public func validate() throws
@@ -212,8 +244,12 @@ extension FBSDKGamingServicesKit.GameRequestDialog : FBSDKCoreKit.WebDialogDeleg
   @objc final public func webDialogDidCancel(_ webDialog: FBSDKCoreKit._WebDialog)
 }
 extension FBSDKGamingServicesKit.GameRequestDialog : FBSDKCoreKit.URLOpening {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc final public func application(_ application: UIKit.UIApplication?, open potentialURL: Foundation.URL?, sourceApplication: Swift.String?, annotation: Any?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc final public func canOpen(_ url: Foundation.URL, for application: UIKit.UIApplication?, sourceApplication: Swift.String?, annotation: Any?) -> Swift.Bool
+  #endif
   @objc final public func applicationDidBecomeActive(_ application: UIKit.UIApplication)
   @objc final public func isAuthenticationURL(_ url: Foundation.URL) -> Swift.Bool
 }
@@ -227,16 +263,24 @@ extension FBSDKGamingServicesKit.GameRequestDialog : FBSDKCoreKit.URLOpening {
   case appUsers
   case appNonUsers
   case everybody
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.UInt)
+  #endif
   public typealias RawValue = Swift.UInt
   public var rawValue: Swift.UInt {
     get
   }
 }
 @_inheritsConvenienceInitializers @objcMembers @objc(FBSDKGameRequestURLProvider) final public class GameRequestURLProvider : ObjectiveC.NSObject {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc(createDeepLinkURLWithQueryDictionary:) final public class func createDeepLinkURL(queryDictionary: [Swift.String : Any]) -> Foundation.URL?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc(filtersNameForFilters:) final public class func filtersName(for filters: FBSDKGamingServicesKit.GameRequestFilter) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc(actionTypeNameForActionType:) final public class func actionTypeName(for actionType: FBSDKGamingServicesKit.GameRequestActionType) -> Swift.String?
+  #endif
   @objc override dynamic public init()
   @objc deinit
 }
@@ -244,7 +288,9 @@ extension FBSDKGamingServicesKit.GameRequestDialog : FBSDKCoreKit.URLOpening {
   @objc(currentContext) public static var current: FBSDKGamingServicesKit.GamingContext?
   @objc final public let identifier: Swift.String
   @objc final public let size: Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public init?(identifier: Swift.String, size: Swift.Int)
+  #endif
   @objc deinit
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers @objc(FBSDKGamingGroupIntegration) final public class GamingGroupIntegration : ObjectiveC.NSObject {
@@ -253,7 +299,9 @@ extension FBSDKGamingServicesKit.GameRequestDialog : FBSDKCoreKit.URLOpening {
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers @objc(FBSDKGamingImageUploader) final public class GamingImageUploader : ObjectiveC.NSObject {
   @objc(uploadImageWithConfiguration:andResultCompletion:) public static func uploadImage(with configuration: FBSDKGamingServicesKit.GamingImageUploaderConfiguration, andResultCompletion completion: @escaping FBSDKGamingServicesKit.GamingServiceResultCompletion)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc(uploadImageWithConfiguration:completion:andProgressHandler:) public static func uploadImage(with configuration: FBSDKGamingServicesKit.GamingImageUploaderConfiguration, completion: @escaping FBSDKGamingServicesKit.GamingServiceResultCompletion, andProgressHandler progressHandler: FBSDKGamingServicesKit.GamingServiceProgressHandler?)
+  #endif
   @objc deinit
 }
 extension FBSDKGamingServicesKit.GamingImageUploader : FBSDKCoreKit.GraphRequestConnectionDelegate {
@@ -269,7 +317,9 @@ extension FBSDKGamingServicesKit.GamingImageUploader : FBSDKCoreKit.GraphRequest
   @objc final public var shouldLaunchMediaDialog: Swift.Bool {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public init(image: UIKit.UIImage, caption: Swift.String?, shouldLaunchMediaDialog: Swift.Bool)
+  #endif
   @objc deinit
 }
 @objcMembers @objc(FBSDKGamingPayload) final public class GamingPayload : ObjectiveC.NSObject {
@@ -288,11 +338,15 @@ extension FBSDKGamingServicesKit.GamingImageUploader : FBSDKCoreKit.GraphRequest
     @objc get
     @objc set
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc convenience public init(delegate: (any FBSDKGamingServicesKit.GamingPayloadDelegate)?)
+  #endif
   @objc deinit
 }
 extension FBSDKGamingServicesKit.GamingPayloadObserver : FBSDKCoreKit.FBSDKApplicationObserving {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc final public func application(_ application: UIKit.UIApplication, open url: Foundation.URL, sourceApplication: Swift.String?, annotation: Any?) -> Swift.Bool
+  #endif
 }
 public typealias GamingServiceCompletionHandler = (_ success: Swift.Bool, _ error: (any Swift.Error)?) -> Swift.Void
 public typealias FBSDKGamingServiceCompletionHandler = FBSDKGamingServicesKit.GamingServiceCompletionHandler
@@ -313,7 +367,9 @@ public enum GamingServicesDialogError : Swift.Error {
 }
 @_hasMissingDesignatedInitializers @objcMembers @objc(FBSDKGamingVideoUploader) final public class GamingVideoUploader : ObjectiveC.NSObject {
   @objc(uploadVideoWithConfiguration:andResultCompletion:) public static func uploadVideo(configuration: FBSDKGamingServicesKit.GamingVideoUploaderConfiguration, completion: @escaping FBSDKGamingServicesKit.GamingServiceResultCompletion)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc(uploadVideoWithConfiguration:completion:andProgressHandler:) public static func uploadVideo(configuration: FBSDKGamingServicesKit.GamingVideoUploaderConfiguration, completion: @escaping FBSDKGamingServicesKit.GamingServiceResultCompletion, progressHandler: FBSDKGamingServicesKit.GamingServiceProgressHandler?)
+  #endif
   @objc deinit
 }
 @objcMembers @objc(FBSDKGamingVideoUploaderConfiguration) final public class GamingVideoUploaderConfiguration : ObjectiveC.NSObject {
@@ -323,7 +379,9 @@ public enum GamingServicesDialogError : Swift.Error {
   @objc final public var caption: Swift.String? {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public init(videoURL: Foundation.URL, caption: Swift.String?)
+  #endif
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class GamingWebDialog<Success> : FBSDKCoreKit.WebDialogDelegate where Success : FBSDKGamingServicesKit.GamingWebDialogSuccess {
@@ -340,8 +398,12 @@ public protocol GamingWebDialogSuccess {
   final public var tournamentID: Swift.String?
   final public var payload: Swift.String?
   public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func showSpecific(tournamentID: Swift.String, payload: Swift.String?, completion: @escaping (Swift.Result<FBSDKGamingServicesKit.JoinTournamentDialogSuccess, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func showSuggested(payload: Swift.String?, completion: @escaping (Swift.Result<FBSDKGamingServicesKit.JoinTournamentDialogSuccess, any Swift.Error>) -> Swift.Void)
+  #endif
   @objc deinit
 }
 public struct JoinTournamentDialogSuccess : FBSDKGamingServicesKit.GamingWebDialogSuccess {
@@ -364,8 +426,12 @@ public enum ShareTournamentDialogError : Swift.Error {
   final public func show(score: Swift.Int, tournament: FBSDKGamingServicesKit.Tournament) throws
   final public func show(initialScore: Swift.Int, config configuration: FBSDKGamingServicesKit.TournamentConfig) throws
   @objc final public func isAuthenticationURL(_ url: Foundation.URL) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc final public func application(_ application: UIKit.UIApplication?, open url: Foundation.URL?, sourceApplication: Swift.String?, annotation: Any?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc final public func canOpen(_ url: Foundation.URL, for application: UIKit.UIApplication?, sourceApplication: Swift.String?, annotation: Any?) -> Swift.Bool
+  #endif
   @objc final public func applicationDidBecomeActive(_ application: UIKit.UIApplication)
   @objc deinit
 }
@@ -383,7 +449,9 @@ extension FBSDKGamingServicesKit.CreateContextDialog : FBSDKGamingServicesKit.Sh
 }
 @objcMembers @objc(FBSDKSwitchContextContent) final public class SwitchContextContent : ObjectiveC.NSObject, FBSDKGamingServicesKit.ValidatableProtocol {
   @objc(initDialogContentWithContextID:) public init(contextID: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+  #endif
   @objc final public func validate() throws
   @objc deinit
 }
@@ -423,7 +491,9 @@ public struct TournamentConfig {
   public var sortOrder: FBSDKGamingServicesKit.TournamentSortOrder?
   public var payload: Swift.String?
   public var image: UIKit.UIImage?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(title: Swift.String? = nil, endTime: Foundation.Date? = nil, scoreType: FBSDKGamingServicesKit.TournamentScoreType? = nil, sortOrder: FBSDKGamingServicesKit.TournamentSortOrder? = nil, image: UIKit.UIImage? = nil, payload: Swift.String? = nil)
+  #endif
 }
 public enum TournamentFetchError : Swift.Error {
   case server(any Swift.Error)
@@ -433,13 +503,17 @@ public enum TournamentFetchError : Swift.Error {
 }
 @_hasMissingDesignatedInitializers final public class TournamentFetcher {
   convenience public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func fetchTournaments(completionHandler: @escaping (Swift.Result<[FBSDKGamingServicesKit.Tournament], FBSDKGamingServicesKit.TournamentFetchError>) -> Swift.Void)
+  #endif
   @objc deinit
 }
 public enum TournamentScoreType : Swift.String {
   case numeric
   case time
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -448,7 +522,9 @@ public enum TournamentScoreType : Swift.String {
 public enum TournamentSortOrder : Swift.String {
   case higherIsBetter
   case lowerIsBetter
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -463,8 +539,12 @@ public enum TournamentUpdaterError : Swift.Error {
 }
 @_hasMissingDesignatedInitializers final public class TournamentUpdater {
   convenience public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func update(tournamentID: Swift.String, score: Swift.Int, completionHandler: @escaping (Swift.Result<Swift.Bool, FBSDKGamingServicesKit.TournamentUpdaterError>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func update(tournament: FBSDKGamingServicesKit.Tournament, score: Swift.Int, completionHandler: @escaping (Swift.Result<Swift.Bool, FBSDKGamingServicesKit.TournamentUpdaterError>) -> Swift.Void)
+  #endif
   @objc deinit
 }
 public protocol URLMedia : Swift.Decodable, Swift.Encodable {
