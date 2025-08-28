@@ -1,0 +1,6 @@
+framework module LFSDKCoreKit_Basics {
+    umbrella header "LFSDKCoreKit_Basics.h"
+
+    export *
+    module * { export * }
+}

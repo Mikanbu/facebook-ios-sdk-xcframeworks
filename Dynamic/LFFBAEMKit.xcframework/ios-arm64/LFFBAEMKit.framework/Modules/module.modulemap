@@ -1,4 +1,0 @@
-framework module LFFBAEMKit {
-  header "FBAEMKit-Swift.h"
-  requires objc
-}
